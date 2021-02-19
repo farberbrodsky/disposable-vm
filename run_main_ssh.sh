@@ -10,7 +10,7 @@ qemu_pid=$!
 # try to ssh until it connects
 while true
 do
-    ssh -q -o StrictHostKeyChecking=no -o ConnectTimeout=1 localhost -p $port
+    ssh -q -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ConnectTimeout=1 localhost -p $port
     # if the server closes, stop
     if ! (stat /proc/$qemu_pid/cmdline >/dev/null 2>/dev/null); then
         exit
