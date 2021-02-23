@@ -2,7 +2,7 @@ source config.sh
 source ./util/get_port.sh
 
 echo ssh on port $port
-my_img="${2:-image.qcow2}"  # default to image.qcow2
+my_img="${1:-image.qcow2}"  # default to image.qcow2
 qemu-kvm -m $MEMORY -nographic -smp $CPU_CORES -drive file=$my_img,format=qcow2 \
 -device e1000,netdev=net0 \
 -netdev user,id=net0,hostfwd=tcp::$port-:22 > /dev/null &
