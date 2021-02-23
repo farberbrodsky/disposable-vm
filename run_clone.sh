@@ -1,8 +1,9 @@
 source config.sh
 source ./util/get_port.sh
 
-new_img=$port.qcow2
-cp image.qcow2 $new_img
+my_img="${1:-image.qcow2}"  # default to image.qcow2
+new_img="$port.qcow2"
+cp $my_img $new_img
 
 echo ssh on port $port, filename $new_img
 qemu-kvm -m $MEMORY -nographic -smp $CPU_CORES -drive file=$new_img,format=qcow2 \
