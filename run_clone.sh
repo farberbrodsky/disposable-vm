@@ -6,7 +6,7 @@ new_img="$port.qcow2"
 cp $my_img $new_img
 
 echo ssh on port $port, filename $new_img
-qemu-kvm -m $MEMORY -nographic -smp $CPU_CORES -drive file=$new_img,format=qcow2 \
+$QEMU_CMD -m $MEMORY -nographic -smp $CPU_CORES -drive file=$new_img,format=qcow2 \
 -device e1000,netdev=net0 \
 -netdev user,id=net0,hostfwd=tcp::$port-:22 > /dev/null &
 qemu_pid=$!
